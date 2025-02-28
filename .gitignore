@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Poetry files
+poetry.lock
+
+# Logs and local environment settings
+*.log
+.env
+*.env
+*.ini
+*.cfg
+*.DS_Store
+
+# Database files
+db.sqlite3
+*.sqlite3
+
+# Django-related
+media/
+staticfiles/
+static/
+
+# Migrations (optional, if you don't want to track them before finalizing models)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+**/migrations/*.py, !**/migrations/__init__.py
+
+# VSCode and PyCharm
+.vscode/
+.idea/
+
+# Ruff & Linter caches
+ruff_cache/
+.mypy_cache/
+.pytest_cache/
