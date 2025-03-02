@@ -33,6 +33,8 @@ merge:
 push:
 	git push origin $(shell git branch --show-current)
 
+submit: update-master rebase merge push
+
 makemigrations:
 	cd crud_task_manager && poetry run python manage.py makemigrations
 
