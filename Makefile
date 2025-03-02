@@ -16,6 +16,23 @@ run:
 test:
 	cd crud_task_manager && poetry run python manage.py test
 
+update-master:
+	git checkout master
+	git pull origin master
+	git checkout -
+
+rebase:
+	git fetch origin
+	git rebase origin/master
+
+merge:
+	git checkout master
+	git merge --ff-only $(shell git branch --show-current)
+	git push origin master
+
+push:
+	git push origin $(shell git branch --show-current)
+
 makemigrations:
 	cd crud_task_manager && poetry run python manage.py makemigrations
 
