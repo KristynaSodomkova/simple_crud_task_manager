@@ -31,7 +31,7 @@ merge:
 	git push origin master
 
 push:
-	git push origin $(shell git branch --show-current)
+	git push origin $(shell git branch --show-current) --force
 
 submit: update-master rebase merge push pr
 
