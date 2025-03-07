@@ -18,7 +18,8 @@ test:
 
 update-master:
 	git checkout master
-	git pull origin master
+	git fetch origin master
+	git merge origin/master
 	git checkout -
 
 rebase:
