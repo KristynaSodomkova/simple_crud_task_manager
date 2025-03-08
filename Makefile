@@ -43,6 +43,9 @@ pr:
 	@echo "Opening a Pull Request on GitHub..."
 	gh pr create --base master --head $(shell git branch --show-current) --title "Auto PR: $(shell git branch --show-current)" --body "Merging latest changes from $(shell git branch --show-current) into master."
 
+prune-branches:
+	git fetch --prune
+
 makemigrations:
 	cd crud_task_manager && poetry run python manage.py makemigrations
 
