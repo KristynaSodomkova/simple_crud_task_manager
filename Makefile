@@ -37,8 +37,16 @@ push:
 submit: update-master rebase push pr
 
 pr:
-	@echo "Opening a Pull Request on GitHub..."
-	gh pr create --base master --head $(shell git branch --show-current) --title "Auto PR: $(shell git branch --show-current)" --body "Merging latest changes from $(shell git branch --show-current) into master."
+	@echo "Checking for existing Pull Request on GitHub..."
+	@pr_url=$$(gh pr list --head $(shell git branch --show-current) --base master --state open --json url --jq '.[].url'); \
+	if [ -n "$$pr_url" ]; then \
+	  echo "A pull request for branch '$(shell git branch --show-current)' already exists:"; \
+	  echo "$$pr_url"; \
+	else \
+	  echo "Opening a Pull Request on GitHub..."; \
+	  gh pr create --base master --head $(shell git branch --show-current) --title "Auto PR: $(shell git branch --show-current)" --body "Merging latest changes from $(shell git branch --show-current) into master."; \
+	fi
+
 
 prune-branches:
 	git fetch --prune
