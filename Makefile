@@ -34,7 +34,7 @@ merge:
 push:
 	git push origin $(shell git branch --show-current) --force
 
-submit: update-master rebase push pr
+submit: update-master rebase test push pr
 
 pr:
 	@echo "Checking for existing Pull Request on GitHub..."
