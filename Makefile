@@ -34,7 +34,10 @@ merge:
 push:
 	git push origin $(shell git branch --show-current) --force
 
-submit: update-master rebase push pr
+switch-from-master:
+	git checkout -
+
+submit: update-master rebase push pr switch-from-master
 
 pr:
 	@echo "Opening a Pull Request on GitHub..."
