@@ -35,7 +35,7 @@ push:
 	git push origin $(shell git branch --show-current) --force
 
 switch-from-master:
-	@echo "Currently on $(shell git branch --show-current). Switching to master..."
+	@echo "Currently on $(shell git branch --show-current). Switching back..."
 	git checkout -
 
 submit: update-master rebase push pr switch-from-master
