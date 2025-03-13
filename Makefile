@@ -9,6 +9,15 @@ help:
 	@echo "  make shell         - open the Django shell"
 	@echo "  make lint          - run ruff linting and formatting"
 	@echo "  make clean         - remove temporary or build files"
+	@echo "  make build-docker-image - build the Docker image"
+	@echo "  make run-docker    - run the Django development server in Docker"
+	@echo "  make update-master  - update the local master branch"
+	@echo "  make rebase         - rebase the current branch on master"
+	@echo "  make merge          - merge the current branch into master"
+	@echo "  make push           - push the current branch to origin"
+	@echo "  make submit         - update master, rebase, test, push, and open a PR"
+	@echo "  make pr             - open a PR for the current branch"
+	@echo "  make prune-branches - remove stale remote tracking branches"
 
 run:
 	cd crud_task_manager && poetry run python manage.py runserver 8080
@@ -66,3 +75,10 @@ lint:
 clean:
 	find . -type f -name '*.pyc' -delete
 	find . -type d -name '__pycache__' -exec rm -rf {} +
+
+build-docker-image:
+	docker build -t crud-app .
+
+# Run the Django development server in docker
+run-docker:
+	docker run -p 8080:8080 crud-app
