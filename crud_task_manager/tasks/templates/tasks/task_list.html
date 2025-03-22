@@ -7,13 +7,15 @@
     {% for task in tasks %}
     <li>
         {{ task.name }} - {{ task.category }} -
-        {% if task.finished %}
+        {% if task.finished_on %}
             Finished on: {{ task.finished_on }}
         {% else %}
             Not Finished
         {% endif %}
         | <a href="{% url 'update_task' task.pk %}">Edit</a>
-        | <a href="{% url 'finish_task' task.pk %}">Finish</a>
+        {% if not task.finished_on %}
+            | <a href="{% url 'finish_task' task.pk %}">Finish</a>
+        {% endif %}
         | <a href="{% url 'delete_task' task.pk %}">Delete</a>
     </li>
     {% endfor %}
