@@ -45,6 +45,3 @@ class FinishTaskView(View):
         task.finished_on = timezone.now()
         task.save()
         return redirect('task_list')
-
-def foo_function():
-    pass
