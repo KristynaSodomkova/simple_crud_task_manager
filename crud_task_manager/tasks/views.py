@@ -41,7 +41,6 @@ class FinishTaskView(View):
 
     def post(self, request, pk, *args, **kwargs):
         task = get_object_or_404(Task, pk=pk)
-        task.finished = True
         task.finished_on = timezone.now()
         task.save()
         return redirect('task_list')
