@@ -18,6 +18,9 @@ help:
 	@echo "  make submit         - update master, rebase, test, push, and open a PR"
 	@echo "  make pr             - open a PR for the current branch"
 	@echo "  make prune-branches - remove stale remote tracking branches"
+	@echo "  make db-stop        - Stop and remove the PostgreSQL Docker container (db-crud-es)"
+	@echo "  make db-start       - Start the PostgreSQL Docker container (db-crud-es) on host port 5433"
+	@echo "  make run-app        - Start the PostgreSQL container, apply migrations, and run the Django development server"
 
 run:
 	cd crud_task_manager && poetry run python manage.py runserver 8080
@@ -82,3 +85,14 @@ build-docker-image:
 # Run the Django development server in docker
 run-docker:
 	docker run -p 8080:8080 crud-app
+
+db-stop:
+	-docker rm -f db-crud-es
+
+db-start: db-stop
+	docker run --name db-crud-es -p 5433:5432 -e POSTGRES_DB=project -e POSTGRES_PASSWORD=secret -d postgres:17
+	@echo "Waiting for db..."
+	sleep 3
+
+run-app: db-start migrate run
+	@echo "Application is running!"
